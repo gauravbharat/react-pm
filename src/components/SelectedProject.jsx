@@ -1,11 +1,13 @@
 import Button from "../shared/components/Button";
 
-export default function SelectedProject({ project }) {
+export default function SelectedProject({ project, onDelete }) {
   const formattedDate = new Date(project.dueDate).toLocaleDateString("en-US", {
     year: "numeric",
     month: "short",
     day: "numeric",
   });
+
+  console.log("SelectedProject", project);
 
   return (
     <div className="w-[35rem] mt-16">
@@ -14,7 +16,11 @@ export default function SelectedProject({ project }) {
           <h1 className="text-3xl font-bold text-stone-600 mb-2">
             {project.title}
           </h1>
-          <Button type="button" btnStyle="raised">
+          <Button
+            type="button"
+            btnStyle="raised"
+            onClick={() => onDelete(project.id)}
+          >
             DELETE
           </Button>
         </div>

@@ -52,11 +52,30 @@ function App() {
     });
   }
 
+  function handleDeleteProject(selectedProjectId) {
+    setProjectState((prevState) => {
+      const updatedProjects = JSON.parse(JSON.stringify(prevState.projects));
+      const foundIndex = updatedProjects.findIndex(
+        (v) => v.id === selectedProjectId
+      );
+
+      if (foundIndex > -1) {
+        updatedProjects.splice(foundIndex, 1);
+      }
+
+      return {
+        ...prevState,
+        selectedProjectId: undefined,
+        projects: updatedProjects,
+      };
+    });
+  }
+
   const selectedProject = projectState.selectedProjectId
     ? projectState.projects.find((v) => v.id === projectState.selectedProjectId)
     : undefined;
 
-  console.log(projectState, selectedProject);
+  // console.log(projectState, selectedProject);
 
   return (
     <main className="h-screen my-8 flex gap-8">
@@ -68,7 +87,10 @@ function App() {
       />
 
       {projectState.selectedProjectId && (
-        <SelectedProject project={selectedProject} />
+        <SelectedProject
+          project={selectedProject}
+          onDelete={handleDeleteProject}
+        />
       )}
 
       {projectState.selectedProjectId === null && (
