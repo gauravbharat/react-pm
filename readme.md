@@ -1,5 +1,7 @@
 ## Practice Project: Advanced Concepts
 
+### demonstrates prop drilling
+
 - Working with Components, State, Styling, Refs & Portals
 - Build a "Project Management" Web App
 - Build, Style, Configure & Re-use Components

@@ -1,5 +1,10 @@
-export default function Button({ children, btnStyle = "base", ...otherProps }) {
-  let classes = "px-6 py-2 rounded text-stone-800 hover:text-stone-950";
+export default function Button({
+  children,
+  delBtn,
+  btnStyle = "base",
+  ...otherProps
+}) {
+  let classes = "px-6 py-2 rounded text-stone-800 hover:text-stone-500";
 
   switch (btnStyle) {
     case "outline":
@@ -27,6 +32,14 @@ export default function Button({ children, btnStyle = "base", ...otherProps }) {
 
     default:
     // do nothing
+  }
+
+  if (delBtn) {
+    if (btnStyle === "raised") {
+      classes = "px-6 py-2 rounded bg-red-800 text-stone-50 hover:bg-red-500";
+    } else {
+      classes = "px-6 py-2 rounded text-stone-700 hover:text-red-500";
+    }
   }
 
   return (

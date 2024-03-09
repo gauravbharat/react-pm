@@ -10,6 +10,57 @@ function App() {
     projects: [],
   });
 
+  function handleAddTask(newTaskText) {
+    setProjectState((prevState) => {
+      const newTask = {
+        text: newTaskText,
+        id: Math.random(),
+      };
+
+      const updatedProjects = JSON.parse(JSON.stringify(prevState.projects));
+      let foundIndex = updatedProjects.findIndex(
+        (v) => v.id === projectState.selectedProjectId
+      );
+
+      if (foundIndex > -1) {
+        updatedProjects[foundIndex] = {
+          ...updatedProjects[foundIndex],
+          tasks: [...updatedProjects[foundIndex].tasks, newTask],
+        };
+      }
+
+      // console.log("handleAddTask", foundIndex, updatedProjects);
+
+      return {
+        ...prevState,
+        projects: updatedProjects,
+      };
+    });
+  }
+
+  function handleDeleteTask(taskId) {
+    setProjectState((prevState) => {
+      const updatedProjects = JSON.parse(JSON.stringify(prevState.projects));
+      let foundProjectIndex = updatedProjects.findIndex(
+        (v) => v.id === projectState.selectedProjectId
+      );
+
+      if (foundProjectIndex > -1) {
+        updatedProjects[foundProjectIndex] = {
+          ...updatedProjects[foundProjectIndex],
+          tasks: updatedProjects[foundProjectIndex].tasks.filter(
+            (v) => v.id !== taskId
+          ),
+        };
+      }
+
+      return {
+        ...prevState,
+        projects: updatedProjects,
+      };
+    });
+  }
+
   function handleStartAddProject() {
     setProjectState((prevState) => {
       return {
@@ -24,6 +75,7 @@ function App() {
       const newProject = {
         ...projectData,
         id: Math.random(),
+        tasks: [],
       };
 
       return {
@@ -90,6 +142,8 @@ function App() {
         <SelectedProject
           project={selectedProject}
           onDelete={handleDeleteProject}
+          onAddTask={handleAddTask}
+          onDeleteTask={handleDeleteTask}
         />
       )}
 
