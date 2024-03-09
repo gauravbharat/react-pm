@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewProject from "./components/NewProject";
 import NoProjectSelected from "./components/NoProjectSelected";
 import ProjectSidebar from "./components/ProjectSidebar";
 import SelectedProject from "./components/SelectedProject";
+import { getFromStore, setToStore } from "./shared/util/store";
 
 function App() {
-  const [projectState, setProjectState] = useState({
-    selectedProjectId: undefined, // string for selected, null for new, undefined for nothing
-    projects: [],
-  });
+  const [projectState, setProjectState] = useState(getFromStore());
+
+  useEffect(() => {
+    setToStore(projectState);
+  }, [projectState.projects]);
 
   function handleAddTask(newTaskText) {
     setProjectState((prevState) => {
