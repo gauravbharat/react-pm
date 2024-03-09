@@ -1,12 +1,14 @@
 import Button from "../shared/components/Button";
 import Input from "../shared/components/Input";
 
-export default function NewProject() {
+export default function NewProject({ onCancel }) {
   return (
     <div className="w-[35rem] mt-16">
       <menu className="flex items-center justify-end gap-4 my-4">
         <li>
-          <Button type="button">Cancel</Button>
+          <Button type="button" onClick={onCancel}>
+            Cancel
+          </Button>
         </li>
         <li>
           <Button btnStyle="raised" type="button">
