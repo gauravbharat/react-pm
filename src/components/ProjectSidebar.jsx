@@ -4,6 +4,7 @@ export default function ProjectSidebar({
   onStartAddProject,
   projects,
   onOpenProject,
+  selectedProjectId,
 }) {
   return (
     <aside className="w-1/3 px-8 py-16 bg-stone-900 text-stone-50 md:w-72 rounded-r-xl">
@@ -16,17 +17,23 @@ export default function ProjectSidebar({
         </Button>
       </div>
       <ul className="mt-8">
-        {projects.map((project) => (
-          <li key={project.id}>
-            <Button
-              btnStyle="menu-base"
-              type="button"
-              onClick={() => onOpenProject(project.id)}
-            >
-              {project.title}
-            </Button>
-          </li>
-        ))}
+        {projects.map((project) => {
+          return (
+            <li key={project.id}>
+              <Button
+                btnStyle={
+                  project.id === selectedProjectId
+                    ? "menu-base-selected"
+                    : "menu-base"
+                }
+                type="button"
+                onClick={() => onOpenProject(project.id)}
+              >
+                {project.title}
+              </Button>
+            </li>
+          );
+        })}
       </ul>
     </aside>
   );

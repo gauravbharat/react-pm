@@ -20,6 +20,11 @@ export default function Button({ children, btnStyle = "base", ...otherProps }) {
         "w-full text-left px-2- py-1 rounded-sm my-1 text-stone-400 hover:text-stone-200 hover:bg-stone-800";
       break;
 
+    case "menu-base-selected":
+      classes =
+        "w-full text-left px-2- py-1 rounded-sm my-1 bg-stone-800 text-stone-200";
+      break;
+
     default:
     // do nothing
   }
