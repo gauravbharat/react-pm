@@ -1,6 +1,4 @@
-## Practice Project: Advanced Concepts
-
-### demonstrates prop drilling
+## Practice Project: Demonstrates shared state (prop drilling)
 
 - Working with Components, State, Styling, Refs & Portals
 - Build a "Project Management" Web App
